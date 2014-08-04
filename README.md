@@ -10,25 +10,20 @@ the purpose of this project is to create a set of scripts that examine the Unite
 usage
 ------
 the usgs crc database also handles the following parameters:
-townshipnumber=
-crclibrarynumber=
-state=
-type=
-cuttings=
-fieldsorting=%2Btwnnum
-fieldsorting=%2Blibnum
-fieldsorting=%2Bmindepth
-wellname=
-section=
-operator=
-cores=true
-field=
-rangenumber=
-search=
-county=
-apinumber=
-offset=0
-formation=
+townshipnumber (integer)
+crclibrarynumber (integer)
+state (string)
+type (string)
+cuttings (boolean)
+wellname (string)
+section (integer)
+operator (string)
+cores (boolean)
+field (string)
+rangenumber (integer)
+county (string)
+apinumber (integer)
+formation (string)
 
-any of these parameters can be added to the 'data' dict in the usgs_crc.py script (in any order) to refine or modify the query.
+any of these parameters can be added to/modified in the 'data' dict that is in the usgs_crc.py script (in any order) to refine or modify the query.
 
