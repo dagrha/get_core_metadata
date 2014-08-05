@@ -19,5 +19,5 @@ response = urllib2.urlopen(full_url)
 timestr = time.strftime("%Y%m%d")
 csv_name = timestr + '_usgscrc.csv'
 
-date_file = open(csv_name, 'w')
+data_file = open(csv_name, 'w')
 print>>data_file, response.read()
