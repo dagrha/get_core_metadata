@@ -1,7 +1,8 @@
-import csv
 import time
 from datetime import date, timedelta
 import difflib
+import smtplib
+from email.mime.text import MIMEText
 
 timestr = time.strftime("%Y%m%d")
 yesterday = date.today() - timedelta(1)
@@ -14,4 +15,25 @@ file2 = open(csv_today, 'r')
 diff = difflib.ndiff(file1.readlines(), file2.readlines())
 
 delta = ''.join( x for x in diff if x.startswith('- ') or x.startswith('+ '))
-print delta
+with open('dailydelta.csv', 'w') as daily_delta:
+	daily_delta.write(delta)
+
+if delta == '':
+	print "no changes found"
+else:
+	print delta 
+	#if there is a difference, we will send an email to notify the user
+	fp = open('dailydelta.csv', 'rb')
+	msg = MIMEText(fp.read())
+	fp.close()
+	
+	me = 'danielhallau@discovery-group.com'
+	you = 'ryansharma@discovery-group.com'
+	
+	msg['Subject'] = 'The USGS-CRC DB has been updated'
+	msg['From'] = me
+	msg['To'] = you
+	
+	s = smtplib.SMTP('discovery-group.com')
+	s.sendmail(me, [you], msg.as_string())
+	s.quit()
