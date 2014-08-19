@@ -27,13 +27,15 @@ else:
 	msg = MIMEText(fp.read())
 	fp.close()
 	
-	me = 'danielhallau@discovery-group.com'
-	you = 'ryansharma@discovery-group.com'
+	#add the to/from addresses here
+	me = #from
+	you = #to
 	
 	msg['Subject'] = 'The USGS-CRC DB has been updated'
 	msg['From'] = me
 	msg['To'] = you
 	
-	s = smtplib.SMTP('discovery-group.com')
+	#define the smtp server.  modify [localhost] to be your smtp server
+	s = smtplib.SMTP('[localhost]')
 	s.sendmail(me, [you], msg.as_string())
 	s.quit()
